@@ -60,22 +60,6 @@ const Header = ({ opacity }: { opacity: number; title?: string }) => {
     >
       <div className='flex flex-row items-center'>
         <Space>
-          {!isMobile ? (
-            <a
-              target='_blank'
-              rel='noreferrer'
-              className='contact-me'
-              href='https://github.com/francoborrelli/spotify-react-web-client'
-            >
-              <span>{t('Source code')}</span>
-            </a>
-          ) : null}
-
-          {/*
-          <div className='news'>
-            <News />
-          </div> */}
-
           {user ? (
             <div className='avatar-container'>
               <Link to={`/users/${user!.id}`}>
