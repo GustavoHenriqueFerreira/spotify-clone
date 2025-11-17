@@ -1,0 +1,16 @@
+export const search = {
+  'Top Result': 'Resultado principal',
+  Songs: 'Músicas',
+  Song: 'Música',
+  Albums: 'Álbuns',
+  Album: 'Álbum',
+  Artists: 'Artistas',
+  Artist: 'Artista',
+  By: 'Por',
+  'Browse all': 'Explorar tudo',
+  Playlists: 'Playlists',
+  'Clear recent searches': 'Limpar pesquisas recentes',
+  'Recent Searches': 'Pesquisas recentes',
+  'No results': 'Nenhum resultado encontrado',
+  'No results where found for': 'Nenhum resultado encontrado para',
+};

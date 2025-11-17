@@ -1,0 +1,37 @@
+export const home = {
+  'Made for': 'Feito para',
+  'New releases': 'Lançamentos',
+  ALL: 'Tudo',
+  PODCASTS: 'Podcasts',
+  'Made for you': 'Feito para você',
+  you: 'para você',
+  'Liked Songs': 'Músicas Curtidas',
+  Artists: 'Artistas',
+  MUSIC: 'Música',
+  SONGS: 'Músicas',
+  ALBUMS: 'Álbuns',
+  PLAYLISTS: 'Playlists',
+  ARTISTS: 'Artistas',
+  TRACKS: 'Faixas',
+  Preview: 'Prévia',
+  'Log In': 'Entrar',
+  'Not now': 'Agora não',
+  Trending: 'Em alta',
+  'Your playlists': 'Suas playlists',
+  'Featured Charts': 'Paradas em destaque',
+  'Start listening with a free Spotify account':
+    'Comece a ouvir com uma conta gratuita do Spotify',
+  'You’re logged out': 'Você saiu da conta',
+  'Log in to add this to your Liked Songs.':
+    'Entre para adicionar isto às suas Músicas Curtidas.',
+  'Create a playlist': 'Criar playlist',
+  'Log in to create and share playlists.':
+    'Entre para criar e compartilhar playlists.',
+  [`Let's access your library`]: `Acesse sua biblioteca`,
+  'Log In to access all the features of the app':
+    'Entre para acessar todos os recursos do aplicativo',
+  'Your top mixes': 'Seus mixes principais',
+  'Recently played': 'Reproduzidos recentemente',
+  'Featured playlists': 'Em destaque',
+  'Popular playlists': 'Playlists populares',
+};
