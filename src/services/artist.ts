@@ -6,41 +6,41 @@ import type { Artist } from '../interfaces/artist';
 import type { Pagination } from '../interfaces/api';
 
 /**
- * @description Get Spotify catalog information for a single artist identified by their unique Spotify ID.
+ * @description Obtém informações do catálogo do Spotify para um único artista identificado pelo seu ID único do Spotify.
  */
 const fetchArtist = (id: string) => axios.get<Artist>(`/artists/${id}`);
 
 /**
- * @description Get Spotify catalog information for several artists based on their Spotify IDs.
+ * @description Obtém informações do catálogo do Spotify para vários artistas com base em seus IDs do Spotify.
  */
 const fetchArtists = (ids: string[]) =>
   axios.get<{ artists: Artist[] }>(`/artists`, { params: { ids: ids.join(',') } });
 
 /**
- * @description Get Spotify catalog information about an artist's albums.
+ * @description Obtém informações do catálogo do Spotify sobre os álbuns de um artista.
  */
 const fetchArtistAlbums = (
   id: string,
   params: {
-    /** @description The number of album objects to return. */
+    /** @description Quantidade de álbuns a serem retornados. */
     limit?: number;
-    /** @description The index of the first album to return. */
+    /** @description Índice do primeiro álbum a ser retornado. */
     offset?: number;
-    /** @description A comma-separated list of keywords that will be used to filter the response. */
+    /** @description Lista de palavras-chave separadas por vírgula usadas para filtrar a resposta. */
     include_groups?: 'album' | 'single' | 'appears_on' | 'compilation';
-    /** @description The country for which the release date will be formatted. */
+    /** @description País usado para formatar a data de lançamento. */
     market?: string;
   } = {}
 ) => axios.get<Pagination<Album>>(`/artists/${id}/albums`, { params });
 
 /**
- * @description Get Spotify catalog information about an artist's top tracks by country.
+ * @description Obtém informações do catálogo do Spotify sobre as músicas mais populares de um artista por país.
  */
 const fetchArtistTopTracks = (id: string) =>
   axios.get<{ tracks: Track }>(`/artists/${id}/top-tracks`);
 
 /**
- * @description Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
+ * @description Obtém informações do catálogo do Spotify sobre artistas similares a um artista específico. A similaridade é baseada na análise do histórico de audição da comunidade Spotify.
  */
 const fetchSimilarArtists = (id: string) =>
   axios.get<{ artists: Artist[] }>(`/artists/${id}/related-artists`);

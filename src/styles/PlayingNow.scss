@@ -23,8 +23,8 @@
   // max-width: 400px;
 
   .playlist-section-content {
-    -ms-overflow-style: none !important; /* for Internet Explorer, Edge */
-    scrollbar-width: none !important; /* for Firefox */
+    -ms-overflow-style: none !important; /* Internet Explorer, Edge */
+    scrollbar-width: none !important; /* Firefox */
     overflow-y: scroll !important;
     padding-bottom: 70px;
   }

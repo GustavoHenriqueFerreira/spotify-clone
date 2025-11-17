@@ -1,138 +1,224 @@
 export interface Episode {
-  /** @description A URL to a 30 second preview (MP3 format) of the episode. null if not available. */
+  /**
+   * @description URL para uma prévia de 30 segundos (formato MP3) do episódio.
+   * Será null se não estiver disponível.
+   */
   audio_preview_url: string | null;
 
-  /** @description A description of the episode. HTML tags are stripped away from this field, use html_description field in case HTML tags are needed. */
+  /**
+   * @description Descrição do episódio. As tags HTML são removidas deste campo.
+   * Use o campo html_description caso precise das tags HTML.
+   */
   description: string;
 
-  /** @description A description of the episode. This field may contain HTML tags. */
+  /**
+   * @description Descrição do episódio. Este campo pode conter tags HTML.
+   */
   html_description: string;
 
-  /** @description The episode length in milliseconds. */
+  /**
+   * @description Duração do episódio em milissegundos.
+   */
   duration_ms: number;
 
-  /** @description Whether or not the episode has explicit content (true = yes it does; false = no it does not OR unknown). */
+  /**
+   * @description Indica se o episódio contém conteúdo explícito
+   * (true = sim; false = não ou desconhecido).
+   */
   explicit: boolean;
 
-  /** @description Known external URLs for this episode. */
+  /**
+   * @description URLs externas conhecidas para este episódio.
+   */
   external_urls: {
     spotify: string;
   };
 
-  /** @description A link to the Web API endpoint providing full details of the episode. */
+  /**
+   * @description Link para o endpoint da Web API que fornece detalhes completos do episódio.
+   */
   href: string;
 
-  /** @description The Spotify ID for the episode. */
+  /**
+   * @description ID do Spotify para o episódio.
+   */
   id: string;
 
-  /** @description The cover art for the episode in various sizes, widest first. */
+  /**
+   * @description Imagens de capa do episódio em diversos tamanhos, da mais larga para a menor.
+   */
   images: {
     url: string;
     height: number;
     width: number;
   }[];
 
-  /** @description True if the episode is hosted outside of Spotify’s CDN. */
+  /**
+   * @description True se o episódio for hospedado fora do CDN do Spotify.
+   */
   is_externally_hosted: boolean;
 
-  /** @description True if the episode is playable in the given market. Otherwise false. */
+  /**
+   * @description True se o episódio estiver disponível para reprodução no mercado atual.
+   * Caso contrário, false.
+   */
   is_playable: boolean;
 
   /**
-   * @description The language used in the episode, identified by a ISO 639 code. This field is deprecated and might be removed in the future. Please use the languages field instead.
+   * @description Idioma usado no episódio, identificado por um código ISO 639.
+   * Este campo está obsoleto e pode ser removido no futuro.
    * @deprecated
    */
   language: string;
 
-  /** @description A list of the languages used in the episode, identified by their ISO 639 code. */
+  /**
+   * @description Lista de idiomas usados no episódio, identificados por códigos ISO 639.
+   */
   languages: string[];
 
-  /** @description The name of the episode. */
+  /**
+   * @description Nome do episódio.
+   */
   name: string;
 
-  /** @description The date the episode was first released, for example "1981-12-15". Depending on the precision, it might be shown as "1981" or "1981-12". */
+  /**
+   * @description Data de lançamento do episódio, por exemplo "1981-12-15".
+   * Dependendo da precisão, pode aparecer como "1981" ou "1981-12".
+   */
   release_date: string;
 
-  /** @description The precision with which release_date value is known: "year", "month", or "day". */
+  /**
+   * @description Precisão da data de lançamento:
+   * "year", "month" ou "day".
+   */
   release_date_precision: string;
 
-  /** @description The user’s most recent position in the episode. Set if the supplied access token is a user token and has the scope user-read-playback-position. */
+  /**
+   * @description A posição mais recente do usuário no episódio.
+   * Definido apenas quando o token possui o escopo user-read-playback-position.
+   */
   resume_point: {
-    /** @description Whether or not the episode has been fully played by the user. */
+    /**
+     * @description Indica se o episódio já foi totalmente reproduzido pelo usuário.
+     */
     fully_played: boolean;
 
-    /** @description The user’s most recent position in the episode in milliseconds. */
+    /**
+     * @description Posição mais recente do usuário no episódio, em milissegundos.
+     */
     resume_position_ms: number;
   };
 
-  /** @description The object type: “episode”. */
+  /**
+   * @description O tipo do objeto: “episode”.
+   */
   type: '“episode”';
 
-  /** @description The Spotify URI for the episode. */
+  /**
+   * @description O URI do Spotify para o episódio.
+   */
   uri: string;
 
-  /** @description Restrictions of the episode. */
+  /**
+   * @description Restrições do episódio.
+   */
   restrictions: {
     reason: string;
   };
 
-  /** @description The show on which the episode belongs. */
+  /**
+   * @description O show ao qual o episódio pertence.
+   */
   show: {
-    /** @description A list of the countries in which the show can be played, identified by their ISO 3166-1 alpha-2 code. */
+    /**
+     * @description Lista de países onde o show pode ser reproduzido,
+     * identificados por códigos ISO 3166-1 alpha-2.
+     */
     available_markets: string[];
 
-    /** @description The copyright information of the show. */
+    /**
+     * @description Informações de copyright do show.
+     */
     copyrights: {
       text: string;
       type: string;
     }[];
 
-    /** @description A description of the show. HTML tags are stripped away from this field, use html_description field in case HTML tags are needed. */
+    /**
+     * @description Descrição do show. As tags HTML são removidas deste campo.
+     * Use html_description caso precise das tags HTML.
+     */
     description: string;
 
-    /** @description A description of the show. This field may contain HTML tags. */
+    /**
+     * @description Descrição do show, podendo conter tags HTML.
+     */
     html_description: string;
 
-    /** @description Whether or not the show has explicit content (true = yes it does; false = no it does not OR unknown). */
+    /**
+     * @description Indica se o show possui conteúdo explícito.
+     */
     explicit: boolean;
 
-    /** @description Known external URLs for this show. */
+    /**
+     * @description URLs externas conhecidas do show.
+     */
     external_urls: {
       spotify: string;
     };
 
-    /** @description A link to the Web API endpoint providing full details of the show. */
+    /**
+     * @description Link para o endpoint da Web API que fornece detalhes completos do show.
+     */
     href: string;
 
-    /** @description The Spotify ID for the show. */
+    /**
+     * @description ID do Spotify para o show.
+     */
     id: string;
 
-    /** @description The cover art for the show in various sizes, widest first. */
+    /**
+     * @description Imagens de capa do show em diversos tamanhos, da mais larga para a menor.
+     */
     images: {
       url: string;
       height: number;
       width: number;
     }[];
 
-    /** @description A list of the languages used in the show, identified by their ISO 639 code. */
+    /**
+     * @description Lista de idiomas usados no show.
+     */
     languages: string[];
 
-    /** @description The media type of the show. */
+    /**
+     * @description Tipo de mídia do show.
+     */
     media_type: string;
 
-    /** @description The name of the show. */
+    /**
+     * @description Nome do show.
+     */
     name: string;
 
-    /** @description The publisher of the show. */
+    /**
+     * @description Editor do show.
+     */
     publisher: string;
 
-    /** @description The object type: “show”. */
+    /**
+     * @description O tipo do objeto: “show”.
+     */
     type: 'show';
 
-    /** @description The Spotify URI for the show. */
+    /**
+     * @description O URI do Spotify para o show.
+     */
     uri: string;
 
-    /** @description The total number of episodes in the show. */
+    /**
+     * @description Número total de episódios do show.
+     */
     total_episodes: number;
   };
 }

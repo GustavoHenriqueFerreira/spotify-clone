@@ -7,27 +7,36 @@ import type { Pagination } from '../interfaces/api';
 import type { Playlist } from '../interfaces/playlists';
 
 /**
- * @description Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks that match a keyword string. Audiobooks are only available within the US, UK, Canada, Ireland, New Zealand and Australia markets.
+ * @description Obtém informações do catálogo do Spotify sobre álbuns, artistas, playlists, faixas, shows, episódios ou audiolivros que correspondam a uma palavra-chave.  
+ * Audiolivros estão disponíveis apenas nos mercados: EUA, Reino Unido, Canadá, Irlanda, Nova Zelândia e Austrália.
  */
 export const querySearch = (params: {
   /**
-   * @description Search query keywords and optional field filters and operators.
+   * @description Palavras-chave da busca e filtros/campos opcionais com operadores.
    */
   q: string;
+
   /**
-   * @description A comma-separated list of item types to search across.
+   * @description Lista separada por vírgulas com os tipos de itens que devem ser pesquisados.
    */
   type: string;
+
   /**
-   * @description An ISO 3166-1 alpha-2 country code or the string from_token. Provide this parameter if you want to apply Track Relinking.
+   * @description Código de país ISO 3166-1 alpha-2 ou a string "from_token".  
+   * Informe este parâmetro caso queira aplicar Track Relinking.
    */
   market?: string;
+
   /**
-   * @description The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+   * @description Número máximo de itens a retornar. Padrão: 20.  
+   * Mínimo: 1. Máximo: 50.
    */
   limit?: number;
+
   /**
-   * @description The index of the first item to return. Default: 0 (the first object). Use with limit to get the next set of items.
+   * @description Índice do primeiro item a retornar.  
+   * Padrão: 0 (o primeiro objeto).  
+   * Use junto com "limit" para obter páginas seguintes.
    */
   offset?: number;
 }) =>

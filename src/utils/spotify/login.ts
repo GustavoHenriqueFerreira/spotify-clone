@@ -137,7 +137,6 @@ const getToken = async () => {
 };
 
 export const getRefreshToken = async () => {
-  // refresh token that has been previously stored
   const refreshToken = localStorage.getItem('refresh_token') as string;
 
   if (!refreshToken) {

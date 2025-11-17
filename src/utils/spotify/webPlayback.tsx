@@ -5,16 +5,16 @@ import { spotifyActions } from '../../store/slices/spotify';
 import { playerService } from '../../services/player';
 
 export interface WebPlaybackProps {
-  onPlayerError: (message: string) => void; // Función para manejar errores del reproductor
-  onPlayerRequestAccessToken: () => Promise<string>; // Función para obtener el token de acceso
-  onPlayerLoading: () => void; // Notificación de que el reproductor está cargando
-  onPlayerWaitingForDevice: (data: any) => void; // Notificación de que el reproductor espera el dispositivo
-  onPlayerDeviceSelected: () => void; // Notificación de que se ha seleccionado el dispositivo
-  playerName: string; // Nombre del reproductor
-  playerInitialVolume: number; // Volumen inicial del reproductor (0 a 1)
-  playerRefreshRateMs?: number; // Frecuencia de actualización del estado del reproductor en ms
-  playerAutoConnect?: boolean; // Si el reproductor se conecta automáticamente o no
-  children?: any; // Elementos hijos para renderizar dentro del componente
+  onPlayerError: (message: string) => void;
+  onPlayerRequestAccessToken: () => Promise<string>;
+  onPlayerLoading: () => void;
+  onPlayerWaitingForDevice: (data: any) => void;
+  onPlayerDeviceSelected: () => void;
+  playerName: string;
+  playerInitialVolume: number; 
+  playerRefreshRateMs?: number;
+  playerAutoConnect?: boolean;
+  children?: any;
 }
 
 const WebPlayback: FC<WebPlaybackProps> = memo((props) => {

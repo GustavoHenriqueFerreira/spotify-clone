@@ -1,7 +1,6 @@
 // @ts-expect-error
 import ColorThief from '../../node_modules/colorthief/dist/color-thief.mjs';
 
-/* eslint-disable eqeqeq */
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -39,7 +38,6 @@ function getAverageRGB(imgEl: HTMLImageElement) {
   try {
     data = context.getImageData(0, 0, width, height);
   } catch (e) {
-    /* security error, img on diff domain */
     return defaultRGB;
   }
 
@@ -52,7 +50,6 @@ function getAverageRGB(imgEl: HTMLImageElement) {
     rgb.b += data.data[i + 2];
   }
 
-  // ~~ used to floor values
   rgb.r = ~~(rgb.r / count);
   rgb.g = ~~(rgb.g / count);
   rgb.b = ~~(rgb.b / count);

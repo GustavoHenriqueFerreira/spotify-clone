@@ -1,49 +1,52 @@
 export interface Artist {
-  /** @description Known external URLs for this artist. */
+  /** @description URLs externas conhecidas para este artista. */
   external_urls: {
-    /** @description The Spotify URL for the object. */
+    /** @description A URL do Spotify para este artista. */
     spotify: string;
   };
 
-  /** @description Information about the followers of the artist. */
+  /** @description Informações sobre os seguidores do artista. */
   followers: {
-    /** @description This will always be set to null, as the Web API does not support it at the moment. */
+    /** @description Sempre será null, pois a Web API não oferece suporte a este campo atualmente. */
     href: string;
 
-    /** @description The total number of followers. */
+    /** @description O número total de seguidores. */
     total: number;
   };
 
   /**
-   * @description A list of the genres the artist is associated with. If not yet classified, the array is empty.
-   * @example ["Prog rock","Grunge"]
+   * @description Lista dos gêneros aos quais o artista está associado. Caso não haja classificação, o array estará vazio.
+   * @example ["Prog rock", "Grunge"]
    */
   genres: string[];
 
-  /** @description A link to the Web API endpoint providing full details of the artist. */
+  /** @description Link para o endpoint da Web API que fornece os detalhes completos do artista. */
   href: string;
 
-  /** @description The Spotify ID for the artist. */
+  /** @description O ID do artista no Spotify. */
   id: string;
 
-  /** @description Images of the artist in various sizes, widest first. */
+  /** @description Imagens do artista em vários tamanhos, começando pela mais larga. */
   images: {
     url: string;
     height: number;
     width: number;
   }[];
 
-  /** @description The name of the artist. */
+  /** @description O nome do artista. */
   name: string;
 
-  /** @description The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist's popularity is calculated from the popularity of all the artist's tracks. */
+  /** @description A popularidade do artista (0–100). Calculada a partir da popularidade de todas as suas músicas. */
   popularity: number;
 
-  /** @description The object type. */
+  /** @description O tipo do objeto. */
   type: 'artist';
 
-  /** @description The Spotify URI for the artist. */
+  /** @description A URI do Spotify para o artista. */
   uri: string;
 }
 
-export type SimpleArtist = Pick<Artist, 'external_urls' | 'id' | 'href' | 'name' | 'type' | 'uri'>;
+export type SimpleArtist = Pick<
+  Artist,
+  'external_urls' | 'id' | 'href' | 'name' | 'type' | 'uri'
+>;

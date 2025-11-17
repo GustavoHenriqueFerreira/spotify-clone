@@ -3,32 +3,32 @@ import type { User } from './user';
 
 export interface Playlist {
   /**
-   * @description true if the owner allows other users to modify the playlist.
+   * @description true se o dono permite que outros usuários modifiquem a playlist.
    */
   collaborative: boolean;
 
   /**
-   * @description The playlist description. Only returned for modified, verified playlists, otherwise null.
+   * @description A descrição da playlist. Retornada apenas para playlists modificadas ou verificadas; caso contrário, null.
    * @nullable
-   * @example "Get happy with this pick-me-up playlist."
+   * @example "Fique feliz com esta playlist para levantar o astral."
    * @type string
    */
   description: string | null;
 
   /**
-   * @description A link to the Web API endpoint providing full details.
+   * @description Link para o endpoint da Web API que fornece todos os detalhes da playlist.
    */
   external_urls: {
     spotify: string;
   };
 
   /**
-   * @description A link to the Web API endpoint providing full details.
+   * @description Link para o endpoint da Web API que fornece todos os detalhes.
    */
   href: string;
 
   /**
-   * @description The Spotify ID for the playlist.
+   * @description O ID do Spotify para a playlist.
    * @example "37i9dQZF1DXcBWIGoYBM5M"
    * @type string
    * @pattern ^[a-zA-Z0-9]+$
@@ -36,10 +36,11 @@ export interface Playlist {
   id: string;
 
   /**
-   * @description Images for the playlist. The array may be empty or contain up to three images. The images are returned by size in descending order. See Working with Playlists. Note: If returned, the source URL for the image (url) is temporary and will expire in less than a day.
+   * @description Imagens da playlist. O array pode estar vazio ou conter até três imagens.
+   * As imagens são retornadas em ordem decrescente de tamanho.
+   * Obs.: Se retornada, a URL da imagem expira em menos de um dia.
    * @nullable
    * @type Image[]
-   * @items
    * @maxItems 3
    * @minItems 0
    * @uniqueItems true
@@ -51,7 +52,7 @@ export interface Playlist {
   }[];
 
   /**
-   * @description Followers object
+   * @description Objeto contendo informações sobre seguidores da playlist.
    */
   followers: {
     href: string;
@@ -59,34 +60,35 @@ export interface Playlist {
   };
 
   /**
-   * @description The name of the playlist.
+   * @description O nome da playlist.
    * @example "Today's Top Hits"
    * @type string
    */
   name: string;
 
   /**
-   * @description The user who owns the playlist
+   * @description O usuário que é dono da playlist.
    * @type User
    * @nullable
    */
   owner: User | null;
 
   /**
-   * @description true if the playlist is public, false if it is private, null if not relevant.
+   * @description true se a playlist é pública, false se é privada, null se não for aplicável.
    * @nullable
    * @type boolean
    */
   public: boolean | null;
 
   /**
-   * @description The version identifier for the current playlist. Can be supplied in other requests to target a specific playlist version.
+   * @description O identificador da versão atual da playlist.
+   * Pode ser usado em outras requisições para acessar uma versão específica da playlist.
    * @example "7c9b1b4e"
    */
   snapshot_id: string;
 
   /**
-   * @description Information about the tracks of the playlist.
+   * @description Informações sobre as faixas da playlist.
    * @nullable
    */
   tracks: {
@@ -95,12 +97,12 @@ export interface Playlist {
   } | null;
 
   /**
-   * @description The object type: "playlist"
+   * @description O tipo do objeto: "playlist".
    */
   type: 'playlist';
 
   /**
-   * @description The Spotify URI for the playlist.
+   * @description O URI do Spotify para a playlist.
    * @example "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
    * @type string
    */
@@ -108,13 +110,35 @@ export interface Playlist {
 }
 
 export interface PlaylistItem {
+  /**
+   * @description Data em que o item foi adicionado.
+   */
   added_at: string;
+
+  /**
+   * @description Usuário que adicionou o item.
+   */
   added_by: User;
+
+  /**
+   * @description true se a faixa é um arquivo local.
+   */
   is_local: boolean;
+
+  /**
+   * @description Cor primária da faixa/playlist (se aplicável).
+   */
   primary_color: string;
+
+  /**
+   * @description A faixa adicionada.
+   */
   track: Track;
 }
 
 export interface PlaylistItemWithSaved extends PlaylistItem {
+  /**
+   * @description Indica se a faixa está salva na biblioteca do usuário.
+   */
   saved: boolean;
 }

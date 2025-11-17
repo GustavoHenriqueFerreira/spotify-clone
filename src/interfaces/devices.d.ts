@@ -1,43 +1,48 @@
 export interface Device {
   /**
-   * @description The device ID. This ID is unique and persistent to some extent. However, this is not guaranteed and any cached device_id should periodically be cleared out and refetched as necessary.
+   * @description ID do dispositivo. Este ID é único e permanece estável até certo ponto.
+   * No entanto, isso não é garantido, portanto qualquer device_id armazenado em cache
+   * deve ser limpo periodicamente e obtido novamente quando necessário.
    */
   id: string;
 
   /**
-   * @description If this device is the currently active device.
+   * @description Indica se este dispositivo é o dispositivo atualmente ativo.
    */
   is_active: boolean;
 
   /**
-   * @description If this device is currently in a private session.
+   * @description Indica se o dispositivo está atualmente em uma sessão privada.
    * @default false
    */
   is_private_session: boolean;
 
   /**
-   * @description Whether controlling this device is restricted. At present if this is “true” then no Web API commands will be accepted by this device.
+   * @description Indica se o controle deste dispositivo é restrito.
+   * Se for “true”, nenhum comando da Web API será aceito por este dispositivo.
    * @default false
    */
   is_restricted: boolean;
 
   /**
-   * @description A human-readable name for the device. Some devices have a name that the user can configure (e.g. "Loudest speaker") and some devices have a generic name associated with the manufacturer or device mode
+   * @description Nome legível pelo usuário. Alguns dispositivos possuem nomes
+   * configuráveis (ex.: "Caixa de som da sala") e outros possuem nomes genéricos
+   * definidos pelo fabricante ou modelo do dispositivo.
    */
   name: string;
 
   /**
-   * @description Device type, such as “Computer”, “Smartphone” or “Speaker”.
+   * @description Tipo do dispositivo, como “Computer”, “Smartphone” ou “Speaker”.
    */
   type: 'Computer' | 'Smartphone' | 'Speaker';
 
   /**
-   * @description The current volume in percent. This may be null.
+   * @description Volume atual em porcentagem. Pode ser nulo.
    */
   volume_percent: number | null;
 
   /**
-   * @description If this device can be used to set the volume.
+   * @description Indica se este dispositivo permite ajuste de volume.
    */
   supports_volume: boolean;
 }

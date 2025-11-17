@@ -2,7 +2,7 @@
 ARG REACT_APP_SPOTIFY_CLIENT_ID
 ARG REACT_APP_SPOTIFY_REDIRECT_URL=http://localhost:3000/
 
-# build environment
+# build do ambiente
 FROM node:18.12 as builder
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
@@ -10,7 +10,7 @@ RUN yarn install --only=production
 COPY . .
 RUN yarn run build
 
-# production environment
+# build pra testa deploy
 FROM nginx:1.23.2-alpine
 RUN rm -rf /etc/nginx/conf.d
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/

@@ -2,63 +2,101 @@ import type { Album } from './albums';
 import type { SimpleArtist } from './artist';
 
 export interface Track {
-  /** @description The album on which the track appears. The album object includes a link in href to full information about the album. */
+  /**
+   * @description O álbum no qual a faixa aparece. O objeto do álbum inclui um link em `href` para informações completas sobre o álbum.
+   */
   album: Album;
 
-  /** @description The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist */
+  /**
+   * @description Os artistas que performaram a faixa. Cada objeto de artista inclui um link em `href` para mais detalhes sobre o artista.
+   */
   artists: SimpleArtist[];
 
-  /** @description A list of the countries in which the track can be played, identified by their ISO 3166-1 alpha-2 code. */
+  /**
+   * @description Lista dos países em que a faixa pode ser reproduzida, identificados por seus códigos ISO 3166-1 alpha-2.
+   */
   available_markets: string[];
 
-  /** @description The disc number (usually 1 unless the album consists of more than one disc). */
+  /**
+   * @description O número do disco (geralmente 1, a menos que o álbum tenha mais de um disco).
+   */
   disc_number: number;
 
-  /** @description The track length in milliseconds. */
+  /**
+   * @description A duração da faixa em milissegundos.
+   */
   duration_ms: number;
 
-  /** @description Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown). */
+  /**
+   * @description Indica se a faixa possui conteúdo explícito (true = sim; false = não ou desconhecido).
+   */
   explicit: boolean;
 
-  /** @description Known external IDs for the track. */
+  /**
+   * @description IDs externos conhecidos da faixa.
+   */
   external_ids: {
     isrc: string;
   };
 
-  /** @description Known external URLs for this track. */
+  /**
+   * @description URLs externas conhecidas para esta faixa.
+   */
   external_urls: {
-    /** @description The Spotify URL for the object. */
+    /**
+     * @description A URL da faixa no Spotify.
+     */
     spotify: string;
   };
 
-  /** @description A link to the Web API endpoint providing full details of the track. */
+  /**
+   * @description Link para o endpoint da Web API que fornece detalhes completos da faixa.
+   */
   href: string;
 
-  /** @description The Spotify ID for the track. */
+  /**
+   * @description O ID da faixa no Spotify.
+   */
   id: string;
 
-  /** @description Whether or not the track is from a local file. */
+  /**
+   * @description Indica se a faixa é um arquivo local.
+   */
   is_local: false;
 
-  /** @description Part of the response when Track Relinking is applied. If true, the track is playable in the given market. Otherwise false. */
+  /**
+   * @description Parte da resposta quando o Track Relinking é aplicado. Se true, a faixa pode ser reproduzida no mercado atual; caso contrário, false.
+   */
   is_playable: boolean;
 
-  /** @description The name of the track. */
+  /**
+   * @description O nome da faixa.
+   */
   name: string;
 
-  /** @description The popularity of the track. The value will be between 0 and 100, with 100 being the most popular. The track's popularity is calculated from the popularity of all the track's album. */
+  /**
+   * @description A popularidade da faixa, entre 0 e 100. É calculada com base na popularidade de todas as faixas do álbum.
+   */
   popularity: number;
 
-  /** @description A URL to a 30 second preview (MP3 format) of the track. */
+  /**
+   * @description Uma URL para um preview de 30 segundos da faixa (formato MP3).
+   */
   preview_url: string;
 
-  /** @description The number of the track. If an album has several discs, the track number is the number on the specified disc. */
+  /**
+   * @description O número da faixa. Em álbuns com múltiplos discos, esse número corresponde ao disco atual.
+   */
   track_number: number;
 
-  /** @description The object type. */
+  /**
+   * @description O tipo do objeto.
+   */
   type: 'track';
 
-  /** @description The Spotify URI for the track. */
+  /**
+   * @description O URI da faixa no Spotify.
+   */
   uri: string;
 }
 

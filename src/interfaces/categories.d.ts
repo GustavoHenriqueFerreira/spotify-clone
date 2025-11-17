@@ -1,22 +1,22 @@
 export interface Category {
-  /** @description A link to the Web API endpoint returning full details of the category. */
+  /** @description Link para o endpoint da Web API que retorna todos os detalhes da categoria. */
   href: string;
 
-  /** @description The category icon, in various sizes. */
+  /** @description Os ícones da categoria, em vários tamanhos. */
   icons: {
-    /** @description The source URL of the image. */
+    /** @description A URL de origem da imagem. */
     url: string;
 
-    /** @description The image width in pixels. */
+    /** @description A largura da imagem em pixels. */
     width: number;
 
-    /** @description The image height in pixels. */
+    /** @description A altura da imagem em pixels. */
     height: number;
   }[];
 
-  /** @description The Spotify category ID of the category. */
+  /** @description O ID da categoria no Spotify. */
   id: string;
 
-  /** @description The name of the category. */
+  /** @description O nome da categoria. */
   name: string;
 }

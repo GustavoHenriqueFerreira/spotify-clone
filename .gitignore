@@ -1,12 +1,10 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
+# dependências
 /node_modules
 
-# testing
+# testes
 /coverage
 
-# production
+# deploy
 /build
 
 # misc

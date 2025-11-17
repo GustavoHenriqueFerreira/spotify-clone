@@ -1,26 +1,29 @@
 export interface Pagination<T> {
-  /** @description A link to the Web API endpoint returning the full result of the request */
+  /** @description Link para o endpoint da Web API que retorna o resultado completo da requisição. */
   href: string;
 
   items: T[];
 
-  /** @description The maximum number of items in the response (as set in the query or by default). */
+  /** @description O número máximo de itens na resposta (definido na consulta ou pelo padrão). */
   limit: number;
 
-  /** @description The offset of the items returned (as set in the query or by default) */
+  /** @description O deslocamento (offset) dos itens retornados (definido na consulta ou pelo padrão). */
   offset: number;
 
-  /** @description URL to the previous page of items. ( null if none) */
+  /** @description URL para a página anterior de itens (null se não existir). */
   previous: string | null;
 
-  /** @description URL to the next page of items. ( null if none) */
+  /** @description URL para a próxima página de itens (null se não existir). */
   next: string | null;
 
-  /** @description The total number of items available to return.. */
+  /** @description O número total de itens disponíveis para retornar. */
   total: number;
 }
 
 export interface PaginationQueryParams {
+  /** @description Limite de itens a serem retornados. */
   limit?: number;
+
+  /** @description Índice (offset) do primeiro item a ser retornado. */
   offset?: number;
 }

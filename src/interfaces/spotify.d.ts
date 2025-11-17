@@ -2,43 +2,70 @@ import type { Track } from './track';
 import type { Device } from './devices';
 
 export interface SpotifyPlaybackState {
-  /** @description The device that is currently active. */
+  /**
+   * @description O dispositivo que está atualmente ativo.
+   */
   device: Device;
 
-  /** @description If shuffle is on or off. */
+  /**
+   * @description Indica se o modo aleatório (shuffle) está ativado ou desativado.
+   */
   shuffle_state: boolean;
 
+  /**
+   * @description Indica se o Smart Shuffle está ativado.
+   */
   smart_shuffle: boolean;
 
-  /** @description The repeat state. */
+  /**
+   * @description O estado de repetição.
+   */
   repeat_state: 'context' | 'off' | 'track';
 
-  /** @description Unix Millisecond Timestamp when playback state was last changed (play, pause, skip, scrub, new song, etc.). */
+  /**
+   * @description Timestamp Unix em milissegundos indicando quando o estado de reprodução foi alterado pela última vez (play, pause, pular, scrub, nova música, etc.).
+   */
   timestamp: number;
 
-  /** @description A Context Object. Can be null. */
+  /**
+   * @description Um objeto de contexto. Pode ser null.
+   */
   context: {
-    /** @description Known external URLs for this context. */
+    /**
+     * @description URLs externas conhecidas para este contexto.
+     */
     external_urls: {
       spotify: string;
     };
 
-    /** @description A link to the Web API endpoint providing full details of the track. */
+    /**
+     * @description Link para o endpoint da Web API com detalhes completos do contexto.
+     */
     href: string;
 
-    /** @description The object type, e.g. "artist", "playlist", "album", "show". */
+    /**
+     * @description O tipo do objeto, por exemplo: "artist", "playlist", "album", "show".
+     */
     type: 'playlist' | 'album' | 'artist' | 'show';
 
-    /** @description The Spotify URI for the context. */
+    /**
+     * @description O URI do Spotify para este contexto.
+     */
     uri: string;
   } | null;
 
-  /** @description Progress into the currently playing track or episode. Can be null.. */
+  /**
+   * @description Progresso (em ms) da faixa ou episódio que está tocando. Pode ser null.
+   */
   progress_ms: number | null;
 
-  /** @description The currently playing track or episode. Can be null. */
+  /**
+   * @description A faixa ou episódio que está atualmente tocando. Pode ser null.
+   */
   item: Track | null;
 
-  /** @description If something is currently playing, return true. */
+  /**
+   * @description Indica se algo está sendo reproduzido no momento.
+   */
   is_playing: boolean;
 }

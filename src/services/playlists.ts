@@ -6,8 +6,8 @@ import type { Playlist, PlaylistItem } from '../interfaces/playlists';
 import type { Pagination, PaginationQueryParams } from '../interfaces/api';
 
 /**
- * @description Get a playlist owned by a Spotify user.
- * @param playlistId The Spotify ID for the playlist.
+ * @description Obtém uma playlist pertencente a um usuário do Spotify.
+ * @param playlistId O ID da playlist no Spotify.
  */
 const getPlaylist = async (playlistId: string) => {
   return axios.get<Playlist>(`/playlists/${playlistId}`);
@@ -18,7 +18,7 @@ interface GetPlaylistItemsParams extends PaginationQueryParams {
 }
 
 /**
- * @description Get full details of the items of a playlist owned by a Spotify user.
+ * @description Obtém detalhes completos dos itens de uma playlist pertencente a um usuário do Spotify.
  */
 const getPlaylistItems = async (
   playlistId: string,
@@ -28,7 +28,7 @@ const getPlaylistItems = async (
 };
 
 /**
- * @description Get a list of the playlists owned or followed by the current Spotify user.
+ * @description Obtém uma lista de playlists que o usuário atual do Spotify possui ou segue.
  */
 const getMyPlaylists = async (params: PaginationQueryParams = {}) => {
   return axios.get<Pagination<Playlist>>('/me/playlists', { params });
@@ -39,14 +39,14 @@ interface GetFeaturedPlaylistsParams extends PaginationQueryParams {
 }
 
 /**
- * @description Get a list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab).
+ * @description Obtém uma lista de playlists em destaque no Spotify (exibidas, por exemplo, na aba “Explorar” do player).
  */
 const getFeaturedPlaylists = async (params: GetFeaturedPlaylistsParams = {}) => {
   return axios.get<{ playlists: Pagination<Playlist> }>('/browse/featured-playlists', { params });
 };
 
 /**
- * @description Add one or more items to a user's playlist.
+ * @description Adiciona um ou mais itens à playlist de um usuário.
  */
 const addPlaylistItems = async (playlistId: string, uris: string[], snapshot_id: string) => {
   return axios.post(`/playlists/${playlistId}/tracks`, {
@@ -56,7 +56,7 @@ const addPlaylistItems = async (playlistId: string, uris: string[], snapshot_id:
 };
 
 /**
- * @description Remove one or more items from a user's playlist.
+ * @description Remove um ou mais itens da playlist de um usuário.
  */
 const removePlaylistItems = async (playlistId: string, uris: string[], snapshot_id: string) => {
   return axios.delete(`/playlists/${playlistId}/tracks`, {
@@ -68,7 +68,10 @@ const removePlaylistItems = async (playlistId: string, uris: string[], snapshot_
 };
 
 /**
- * @description Either reorder or replace items in a playlist depending on the request's parameters. To reorder items, include range_start, insert_before, range_length and snapshot_id in the request's body. To replace items, include uris as either a query parameter or in the request's body. Replacing items in a playlist will overwrite its existing items. This operation can be used for replacing or clearing items in a playlist.
+ * @description Reordena ou substitui itens de uma playlist, dependendo dos parâmetros enviados.
+ * Para reordenar, envie range_start, insert_before, range_length e snapshot_id.
+ * Para substituir itens, envie uris como parâmetro de query ou no corpo da requisição.
+ * Substituir itens sobrescreve completamente o conteúdo atual da playlist.
  */
 const reorderPlaylistItems = async (
   playlistId: string,
@@ -91,7 +94,8 @@ const reorderPlaylistItems = async (
 };
 
 /**
- * @description Change a playlist's name and public/private state. (The user must, of course, own the playlist.)
+ * @description Altera o nome e as configurações de privacidade/colaboração de uma playlist.
+ * (O usuário precisa ser o dono da playlist.)
  */
 const changePlaylistDetails = async (
   playlistId: string,
@@ -106,8 +110,8 @@ const changePlaylistDetails = async (
 };
 
 /**
- * @description Replace the image used to represent a specific playlist.
- * @body Base64 encoded JPEG image data, maximum payload size is 256 KB.
+ * @description Substitui a imagem usada como capa de uma playlist específica.
+ * @body Imagem JPEG codificada em Base64. Tamanho máximo da carga: 256 KB.
  */
 const changePlaylistImage = async (playlistId: string, image: string, content: string) => {
   return axios.put(`/playlists/${playlistId}/images`, image, {
@@ -116,7 +120,9 @@ const changePlaylistImage = async (playlistId: string, image: string, content: s
 };
 
 /**
- * @description Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.) Each user is generally limited to a maximum of 11000 playlists.
+ * @description Cria uma playlist para um usuário do Spotify.
+ * A playlist será criada vazia até que você adicione músicas.
+ * Cada usuário pode ter no máximo aproximadamente 11.000 playlists.
  */
 const createPlaylist = async (
   userId: string,
@@ -131,7 +137,8 @@ const createPlaylist = async (
 };
 
 /**
- * @description Recommendations are generated based on the available information for a given seed entity and matched against similar artists and tracks. If there is sufficient information about the provided seeds, a list of tracks will be returned together with pool size details.
+ * @description Obtém recomendações com base nos seeds fornecidos (artistas, gêneros ou faixas).
+ * Se houver informações suficientes, uma lista de faixas compatíveis será retornada.
  */
 const getRecommendations = async (params: {
   seed_artists?: string;
@@ -143,7 +150,7 @@ const getRecommendations = async (params: {
 };
 
 /**
- * @description Get a list of the playlists owned or followed by a Spotify user.
+ * @description Obtém uma lista de playlists pertencentes ou seguidas por um determinado usuário.
  */
 const getPlaylists = async (
   userId: string,
