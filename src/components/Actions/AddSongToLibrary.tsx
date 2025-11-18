@@ -26,6 +26,17 @@ const AddSongToLibrary: FC<{ id: string; onToggle: () => void; size?: number }> 
       return;
     }
     userService.saveTracks([id]).then(() => {
+      fetch('https://localhost:7003/api/favoritos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ codUsuario: 6, codMusica: 1 }),
+      })
+    .then(async (res) => {
+        console.log('Resposta da API local:', res);
+        const data = await res.json();
+        console.log('Conteúdo da resposta:', data);
+      })
+      
       message.success(t('Song added to Liked Songs'));
       onToggle();
       dispatch(albumActions.updateTrackLikeState({ id: id!, saved: true }));

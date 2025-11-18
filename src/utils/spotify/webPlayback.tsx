@@ -11,7 +11,7 @@ export interface WebPlaybackProps {
   onPlayerWaitingForDevice: (data: any) => void;
   onPlayerDeviceSelected: () => void;
   playerName: string;
-  playerInitialVolume: number; 
+  playerInitialVolume: number;
   playerRefreshRateMs?: number;
   playerAutoConnect?: boolean;
   children?: any;
@@ -32,38 +32,31 @@ const WebPlayback: FC<WebPlaybackProps> = memo((props) => {
   const handleState = async (state: any | null) => {
     if (state) {
       dispatch(spotifyActions.setState({ state }));
-    } else {
-      clearStatePolling();
-      await waitForDeviceToBeSelected();
     }
   };
 
   const waitForSpotify = useCallback(() => {
     return new Promise<void>((resolve) => {
-      if ('Spotify' in window) {
-        resolve();
-      } else {
+      if ('Spotify' in window) resolve();
+      else {
         // @ts-ignore
-        window.onSpotifyWebPlaybackSDKReady = () => {
-          resolve();
-        };
+        window.onSpotifyWebPlaybackSDKReady = () => resolve();
       }
     });
   }, []);
 
-  const waitForDeviceToBeSelected = () => {
+  const waitForDeviceToBeSelectedOnce = () => {
     return new Promise((resolve) => {
       deviceSelectedInterval.current = setInterval(() => {
         if (webPlaybackInstance.current) {
           webPlaybackInstance.current.getCurrentState().then((state) => {
             if (state !== null) {
-              startStatePolling();
               clearInterval(deviceSelectedInterval.current!);
               resolve(state);
             }
           });
         }
-      });
+      }, 300);
     });
   };
 
@@ -75,11 +68,13 @@ const WebPlayback: FC<WebPlaybackProps> = memo((props) => {
   }, [playerRefreshRateMs]);
 
   const clearStatePolling = useCallback(() => {
-    if (statePollingInterval.current) clearInterval(statePollingInterval.current);
+    if (statePollingInterval.current)
+      clearInterval(statePollingInterval.current);
   }, []);
 
   const setupWebPlaybackEvents = useCallback(async () => {
     let { Player } = window.Spotify;
+
     webPlaybackInstance.current = new Player({
       name: playerName,
       enableMediaSession: true,
@@ -91,27 +86,22 @@ const WebPlayback: FC<WebPlaybackProps> = memo((props) => {
     });
 
     webPlaybackInstance.current.on('initialization_error', (e) => {
-      console.log('initialization_error', e);
       onPlayerError(e.message);
     });
 
     webPlaybackInstance.current.on('authentication_error', (e) => {
-      console.log('authentication_error', e);
       onPlayerError(e.message);
     });
 
     webPlaybackInstance.current.on('account_error', (e) => {
-      console.log('account_error', e);
       onPlayerError(e.message);
     });
 
     webPlaybackInstance.current.on('playback_error', (e) => {
-      console.log('playback_error', e);
       onPlayerError(e.message);
     });
 
     webPlaybackInstance.current.on('player_state_changed', async (state) => {
-      console.log(state);
       await handleState(state);
     });
 
@@ -131,7 +121,6 @@ const WebPlayback: FC<WebPlaybackProps> = memo((props) => {
     playerAutoConnect,
     onPlayerRequestAccessToken,
     onPlayerError,
-    handleState,
     dispatch,
   ]);
 
@@ -148,17 +137,22 @@ const WebPlayback: FC<WebPlaybackProps> = memo((props) => {
       onPlayerLoading();
       await waitForSpotify();
       await setupWebPlaybackEvents();
-      const device_data = await setupWaitingForDevice();
-      onPlayerWaitingForDevice(device_data);
-      await waitForDeviceToBeSelected();
+
+      const deviceData = await setupWaitingForDevice();
+      onPlayerWaitingForDevice(deviceData);
+
+      await waitForDeviceToBeSelectedOnce();
       onPlayerDeviceSelected();
+
+      startStatePolling();
     };
 
     initializePlayer();
 
     return () => {
       clearStatePolling();
-      if (deviceSelectedInterval.current) clearInterval(deviceSelectedInterval.current);
+      if (deviceSelectedInterval.current)
+        clearInterval(deviceSelectedInterval.current);
       webPlaybackInstance.current?.disconnect();
     };
   }, []);
